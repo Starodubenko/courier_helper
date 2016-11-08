@@ -1,0 +1,2 @@
+export * from './chief.component';
+

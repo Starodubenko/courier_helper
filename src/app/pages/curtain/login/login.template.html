@@ -1,0 +1,52 @@
+<form class="login" novalidate [formGroup]="loginForm">
+  <div class="alert alert-warning login-alert" *ngIf="loginAlert" role="alert">{{loginAlert.message}}</div>
+  <div class="form-group"
+       [class.has-error]="!loginForm.controls.username.valid &&
+                          loginForm.controls.username.touched">
+    <div class="col-xs-6">
+      <label class="control-label" for="username">User name</label>
+      <input type="text"
+             class="form-control"
+             id="username"
+             formControlName="username"
+             [(ngModel)]="username">
+    </div>
+    <div class="col-xs-6 login-validation-error">
+      <span class="validation-danger"
+            *ngIf="loginForm.controls.username.hasError('required') && loginForm.controls.username.touched">
+        User name is required.</span>
+      <span class="validation-danger"
+            *ngIf="loginForm.controls.username.hasError('onlyLetters') && loginForm.controls.username.touched">
+        User name can contains only letters.</span>
+    </div>
+  </div>
+  <div class="form-group"
+       [class.has-error]="!loginForm.controls.password.valid &&
+                          loginForm.controls.password.touched">
+    <div class="col-xs-6">
+      <label class="control-label" for="password">Password</label>
+      <input type="password"
+             class="form-control"
+             id="password"
+             formControlName="password"
+             [(ngModel)]="password">
+    </div>
+    <div class="col-xs-6 login-validation-error">
+      <span class="validation-danger"
+            *ngIf="loginForm.controls.password.hasError('required') && loginForm.controls.password.touched">
+        Password is required.</span>
+      <span class="validation-danger"
+            *ngIf="loginForm.controls.password.hasError('minlength') && loginForm.controls.password.touched">
+        Min length should be at least 4 characters.</span>
+      <span class="validation-danger"
+            *ngIf="loginForm.controls.password.hasError('onlyLettersAndNumbers') && loginForm.controls.password.touched">
+        Password can contains only latin letters and numbers.</span>
+    </div>
+  </div>
+  <input type="submit"
+         class="btn btn-primary"
+         (click)="logIn()"
+         [disabled]="!loginForm.valid"
+         value="Log in">
+  <!--<input id="remember-me" type="checkbox" [(ngModel)]="rememberMe"><label for="remember-me">Remember me</label>-->
+</form>

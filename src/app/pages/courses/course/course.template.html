@@ -1,0 +1,80 @@
+<div *ngIf="!isBlank" class="panel panel-default course">
+  <div class="info-bar">
+    <div class="header">
+      <a [routerLink]="['./' + course.id]" class="title" *ngIf="!isViewMode">{{course.title}}</a>
+      <span class="title" *ngIf="isViewMode">{{course.title}}</span>
+      <span class="duration">{{course.duration | durationPipe}}</span>
+      <span class="date">{{course.date | date : "dd.MM.yyyy"}}</span>
+    </div>
+    <div class="description">{{course.description}}</div>
+  </div>
+  <div class="action-bar" *ngIf="!isViewMode">
+    <a [routerLink]="['./' + course.id + '/edit']" class="btn btn-default action-edit">Edit</a>
+    <button class="btn btn-default action-delete" (click)="delete()">Delete</button>
+  </div>
+</div>
+
+<form *ngIf="isBlank" class="course-blank" novalidate [formGroup]="courseForm">
+
+  <div class="form-group" [class.has-error]="!courseForm.controls.title.valid &&
+                                              courseForm.controls.title.touched">
+    <label for="title">Title</label>
+    <input type="text" id="title" class="form-control title"
+           formControlName="title">
+    <span class="validation-danger"
+          *ngIf="courseForm.controls.title.hasError('required') && courseForm.controls.title.touched">
+        Title is required.</span>
+  </div>
+
+  <div class="form-group edit-course-rest-width" [class.has-error]="!courseForm.controls.description.valid &&
+                                                                    courseForm.controls.description.touched">
+    <label for="description">Description</label>
+    <textarea id="description" class="form-control description"
+              formControlName="description"></textarea>
+    <span class="validation-danger"
+          *ngIf="courseForm.controls.description.hasError('required') && courseForm.controls.description.touched">
+        Description is required.</span>
+  </div>
+
+  <div class="form-group date" [class.has-error]="!courseForm.controls.date.valid &&
+                                                  courseForm.controls.date.touched">
+    <label for="date">Date</label>
+    <custom-date formControlName="date" ></custom-date>
+    <span class="validation-danger"
+          *ngIf="courseForm.controls.date.hasError('required') && courseForm.controls.date.touched">
+        Date is required.</span>
+  </div>
+
+  <div class="form-group duration" [class.has-error]="!courseForm.controls.duration.valid &&
+                                                       courseForm.controls.duration.touched">
+    <label for="duration">Duration</label>
+    <input type="number" id="duration" class="form-control duration"
+           formControlName="duration">
+    <span>{{courseForm.value.duration | durationPipe}}</span>
+    <span class="validation-danger"
+          *ngIf="courseForm.controls.duration.hasError('required') && courseForm.controls.duration.touched">
+        Duration is required.</span>
+  </div>
+
+  <div class="form-group author-list" [class.has-error]="!courseForm.controls.authorsIDs.valid &&
+                                                          courseForm.controls.authorsIDs.touched">
+    <label>Authors list</label>
+    <div class="authors-list-block">
+      <select-authors
+        formControlName="authorsIDs"
+        [options]="mapUsersToOptions(authorsCandidates)"></select-authors>
+    </div>
+    <span class="validation-danger"
+          *ngIf="courseForm.controls.authorsIDs.hasError('atLeastOneItemInArray') && courseForm.controls.authorsIDs.touched">
+        At least one author is required.</span>
+  </div>
+
+  <div class="action-bar">
+    <button class="btn btn-default action-edit" *ngIf="course.id" (click)="edit()" [disabled]="!courseForm.valid">Save</button>
+    <button class="btn btn-default action-edit" *ngIf="course.id" (click)="delete()">Delete</button>
+    <button class="btn btn-default action-edit" *ngIf="!course.id" (click)="add()" [disabled]="!courseForm.valid">Add</button>
+    <button class="btn btn-default action-edit" (click)="cancel()">Cancel</button>
+  </div>
+</form>
+
+

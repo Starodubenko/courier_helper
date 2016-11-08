@@ -1,0 +1,24 @@
+<select class="form-control authors candidates"
+        (change)="leftChange($event.target.options)"
+        size="5" multiple
+        (blur)="onTouchHandler($event)">
+  <option *ngFor="let item of options | authorsPipe : selectedItems : 'positive'" [value]="item.id" [selected]="isLeftSelectedElement(item.id)">
+    {{item.value}}
+  </option>
+</select>
+<div class="actions-block">
+  <button class="btn btn-default" (click)="moveCandidateToRight()">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </button>
+  <button class="btn btn-default" (click)="moveCandidateToLeft()">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </button>
+</div>
+<select class="form-control authors"
+        (change)="rightChange($event.target.options)"
+        size="5" multiple
+        (blur)="onTouchHandler($event)">
+  <option *ngFor="let item of options | authorsPipe : selectedItems : 'negative'" [value]="item.id" [selected]="isRightSelectedElement(item.id)">
+    {{item.value}}
+  </option>
+</select>

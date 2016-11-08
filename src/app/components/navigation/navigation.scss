@@ -1,0 +1,54 @@
+.navigation {
+  width: 900px;
+  margin: auto;
+  background-color: #e1e808;
+
+  .breadcrumb-container {
+    float: left;
+    background-color: transparent;
+    position: relative;
+    height: 60px;
+
+    breadcrumb{
+      margin: 0;
+      height: 60px;
+      padding: 15px;
+      font-size: 20px;
+    }
+  }
+
+  .logo-icon {
+    height: 60px;
+    margin-left: 10px;
+    padding: 0;
+
+    img {
+      height: 60px;
+      float: left;
+    }
+  }
+
+  .label-name {
+    height: 60px;
+  }
+
+  .user-info {
+    width: 120px;
+    float: right;
+
+    .name {
+      height: 35px;
+      display: table-cell;
+      vertical-align: middle;
+      padding: 0 5px;
+    }
+
+    .action {
+      padding: 0 5px;
+
+      a {
+        float: right;
+      }
+    }
+  }
+}

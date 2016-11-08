@@ -1,0 +1,10 @@
+<div class="edit-course">
+  <a [routerLink]="['/courses-list']">Back to List</a>
+  <course *ngIf="course"
+          [course]="course"
+          [authorsCandidates]="authorsCandidates"
+          [isBlank]="true"
+          (edit)="saveCourse($event)"
+          (delete)="deleteCourse($event)">
+  </course>
+</div>

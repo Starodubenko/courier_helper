@@ -1,0 +1,92 @@
+.course {
+  .info-bar {
+    display: table-cell;
+    padding: 10px;
+    width: 100%;
+    .header {
+      border-bottom: 1px solid #b4abab;
+      margin-bottom: 5px;
+      .title {
+        width: 75%;
+        display: inline-block;
+      }
+      .duration {
+
+      }
+      .date {
+        float: right;
+      }
+    }
+    .description {
+    }
+  }
+  .action-bar {
+    display: table-cell;
+    width: 200px;
+
+    .action-edit {
+      width: 180px;
+      margin: 15px 10px 5px 10px;
+    }
+    .action-delete {
+      width: 180px;
+      margin: 5px 10px 15px 10px;
+    }
+  }
+}
+
+.course-blank {
+  margin-top: 60px;
+
+  .action-bar {
+    margin-left: 220px;
+  }
+  .form-group {
+    display: table;
+    padding: 5px 10px;
+
+    &.edit-course-rest-width {
+      width: 100%;
+    }
+    &.date {
+      input{
+        width: 120px;
+      }
+    }
+    &.duration {
+      input{
+        width: 75px;
+      }
+      span {
+        margin-left: 10px;
+      }
+    }
+    &.author-list{
+      .authors-list-block{
+        display: table-cell;
+      }
+    }
+    label, span.validation-danger {
+      width: 200px;
+      text-align: end;
+      display: table-cell;
+      vertical-align: middle;
+      padding-right: 10px;
+    }
+    span.validation-danger{
+      color: #a94442;
+      text-align: start;
+      padding-left: 10px;
+    }
+    input, textarea {
+      display: table-cell;
+      width: 100%;
+    }
+    textarea.description{
+      width: 480px;
+    }
+    textarea {
+      resize: vertical;
+    }
+  }
+}

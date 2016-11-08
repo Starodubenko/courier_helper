@@ -1,0 +1,12 @@
+<div class="course-list">
+  <div class="list-actions">
+    <a [routerLink]="['./new']" class="btn btn-default add-cource-button">Add new course</a>
+    <search-row (find)="setSearchedList($event)" [serviceForSearching]="findService"></search-row>
+  </div>
+
+  <div class="list">
+    <course *ngFor="let item of courseList.courses"
+            [course]="item"
+            (delete)="deleteCourse($event)"></course>
+  </div>
+</div>
