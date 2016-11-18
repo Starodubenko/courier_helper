@@ -9,19 +9,20 @@ export class LoggedInGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    let isLoggedIn = this.authService.isLoggedIn();
-    let targetState = state.url;
-    let result = true;
-
-    if (targetState == '/login' && isLoggedIn){
-      result = false;
-      if (this.router.routerState.snapshot.url != "/courses-list"){
-        history.back(-1)
-      }
-    } else
-      if (targetState != '/login' && !isLoggedIn){
-      this.router.navigate(['/login']);
-    }
-    return result;
+    // let isLoggedIn = this.authService.isLoggedIn();
+    // let targetState = state.url;
+    // let result = true;
+    //
+    // if (targetState == '/login' && isLoggedIn){
+    //   result = false;
+    //   if (this.router.routerState.snapshot.url != "/courses-list"){
+    //     history.back(-1)
+    //   }
+    // } else
+    //   if (targetState != '/login' && !isLoggedIn){
+    //   this.router.navigate(['/login']);
+    // }
+    // return result;
+    return true;
   }
 }

@@ -2,8 +2,7 @@
  * Angular 2 decorators and services
  */
 import {Component, ViewEncapsulation, ViewContainerRef} from '@angular/core';
-
-import { AppState } from './app.service';
+import {AppState} from "./app.service";
 
 /*
  * App Component
@@ -16,19 +15,21 @@ import { AppState } from './app.service';
     './app.style.css'
   ],
   template: `
+    <!--<curtain></curtain>-->
     <navigation></navigation>
-    <custom-alert></custom-alert>
+    <!--<custom-alert></custom-alert>-->
+    
     <main class="main-container">
       <router-outlet></router-outlet>
     </main>
-    <modal-warning></modal-warning>
-  `
+    <!--<modal-warning></modal-warning>-->
+  `,
 })
 export class App {
 
   private viewContainerRef: ViewContainerRef;
 
-  public constructor(viewContainerRef:ViewContainerRef) {
+  public constructor(viewContainerRef: ViewContainerRef) {
     this.viewContainerRef = viewContainerRef;
   }
 

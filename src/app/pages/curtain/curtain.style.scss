@@ -3,3 +3,8 @@
   height: 100vh;
   background-color: #8153ef;
 }
+
+:host {
+  position: absolute;
+  z-index: 2;
+}

@@ -33,7 +33,7 @@ import {CourseService} from "./pages/courses/course/course.service";
 import {UserService} from "./services/user.service";
 import {AuthorsPipe} from "./pipes/authors.pipe";
 import {ModalWarningService} from "./components/modalWarning/modalWarning.service";
-import {ModalModule, AlertModule, AlertComponent} from "ng2-bootstrap";
+import {ModalModule, AlertModule} from "ng2-bootstrap";
 import {BreadcrumbsComponent} from "./components/breadscrumbs/breadcrumbs.component";
 import {BreadcrumbService} from "./components/breadscrumbs/breadcrumbs.service";
 import {ViewCoursePage} from "./pages/viewCourse";
@@ -41,6 +41,14 @@ import {CourseListContainer} from "./pages/courses/courseListContainer.component
 import {ViewCourseContainer} from "./pages/viewCourse/viewCourseContainer.component";
 import {CustomAlertComponent} from "./components/alert";
 import {CustomAlertService} from "./components/alert/alert.service";
+import {OrdersListPage} from "./pages/orders/orderList.component";
+import {NewOrderPage} from "./pages/orders/new/newOrder.component";
+import {OrderViewPage} from "./pages/orders/view/viewOrder.component";
+import {StatisticsListPage} from "./pages/ststistics/statisticsList.component";
+import {StatisticsViewPage} from "./pages/ststistics/view/statisticsView.component";
+import {ChiefPage} from "./pages/chief/chief.component";
+import {CurtainComponent} from "./pages/curtain/curtain.component";
+import {Animations} from "./app.animations";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -66,7 +74,8 @@ type StoreType = {
     CustomAlertComponent,
     SelectAuthorsComponent,
     NavigationComponent,
-    LoginComponent,
+    CurtainComponent,
+      LoginComponent,
     BreadcrumbsComponent,
     CourseListContainer,
     ViewCourseContainer,
@@ -78,6 +87,12 @@ type StoreType = {
       SearchRowComponent,
     EditCoursePage,
     Home,
+    OrdersListPage,
+      NewOrderPage,
+      OrderViewPage,
+    StatisticsListPage,
+      StatisticsViewPage,
+    ChiefPage,
 
     DurationPipe,
     AuthorsPipe,
@@ -103,46 +118,13 @@ type StoreType = {
     UserService,
     ModalWarningService,
     CustomAlertService,
-    BreadcrumbService
+    BreadcrumbService,
+    Animations
   ]
 })
 export class AppModule {
   constructor(public appRef: ApplicationRef, public appState: AppState) {}
 
-  hmrOnInit(store: StoreType) {
-    if (!store || !store.state) return;
-    console.log('HMR store', JSON.stringify(store, null, 2));
-    // set state
-    this.appState._state = store.state;
-    // set input values
-    if ('restoreInputValues' in store) {
-      let restoreInputValues = store.restoreInputValues;
-      setTimeout(restoreInputValues);
-    }
-
-    this.appRef.tick();
-    delete store.state;
-    delete store.restoreInputValues;
-  }
-
-  hmrOnDestroy(store: StoreType) {
-    const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
-    // save state
-    const state = this.appState._state;
-    store.state = state;
-    // recreate root elements
-    store.disposeOldHosts = createNewHosts(cmpLocation);
-    // save input values
-    store.restoreInputValues  = createInputTransfer();
-    // remove styles
-    removeNgStyles();
-  }
-
-  hmrAfterDestroy(store: StoreType) {
-    // display new elements
-    store.disposeOldHosts();
-    delete store.disposeOldHosts;
-  }
 
 }
 

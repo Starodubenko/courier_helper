@@ -1,1 +1,6 @@
 /*styles for home content only*/
+
+:host {
+  position: fixed;
+  z-index: 1;
+}

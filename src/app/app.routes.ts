@@ -9,11 +9,11 @@ import {NewOrderPage} from "./pages/orders/new/newOrder.component";
 import {StatisticsListPage} from "./pages/ststistics/statisticsList.component";
 import {StatisticsViewPage} from "./pages/ststistics/view/statisticsView.component";
 import {ChiefPage} from "./pages/chief/chief.component";
+import {CurtainComponent} from "./pages/curtain/curtain.component";
 
 
 export const ROUTES: Routes = [
-  {path: '', redirectTo: 'login', pathMatch: 'full'},
-  {path: 'login', component: LoginComponent, canActivate: [LoggedInGuard]},
+  {path: 'login', component: CurtainComponent, canActivate: [LoggedInGuard]},
   {path: 'home', component: Home, canActivate: [LoggedInGuard]},
   {
     path: 'my-orders',
@@ -40,20 +40,5 @@ export const ROUTES: Routes = [
     //   {path: ':id', component: OrderStatisticsViewPage, canActivate: [LoggedInGuard]},
     // ]
   },
-  // {
-  //   path: 'courses-list',
-  //   component: CourseListContainer,
-  //   children: [
-  //     {path: '', component: CourseListPage, canActivate: [LoggedInGuard]},
-  //     {path: 'new', component: AddCoursePage, canActivate: [LoggedInGuard]},
-  //     {
-  //       path: ':id',
-  //       component: ViewCourseContainer,
-  //       children: [
-  //         {path: '', component: ViewCoursePage, canActivate: [LoggedInGuard]},
-  //         {path: 'edit', component: EditCoursePage, canActivate: [LoggedInGuard]},
-  //       ]
-  //     },
-  //   ]
-  // }
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
 ];

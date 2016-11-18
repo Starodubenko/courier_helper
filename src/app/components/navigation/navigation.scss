@@ -2,6 +2,8 @@
   width: 900px;
   margin: auto;
   background-color: #e1e808;
+  position: absolute;
+  z-index: 2;
 
   .breadcrumb-container {
     float: left;
