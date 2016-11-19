@@ -8,7 +8,7 @@ import {BreadcrumbService} from './breadcrumbs.service';
   template: `
     <ul class="breadcrumb">
       <li>
-        <a [routerLink]="['/']">Courses</a>
+        <a [routerLink]="['/']">CH</a>
       </li>
       <li *ngFor="let segment of segments; let last = last; let index = index;" [ngClass]="{'active': last}">
         <a *ngIf="!last" [routerLink]="getNavigationURL(segment)">{{ getRouteName(segment) }}</a>

@@ -49,6 +49,8 @@ import {StatisticsViewPage} from "./pages/ststistics/view/statisticsView.compone
 import {ChiefPage} from "./pages/chief/chief.component";
 import {CurtainComponent} from "./pages/curtain/curtain.component";
 import {Animations} from "./app.animations";
+import {MaterialModule} from "@angular/material";
+import {LeftSidebarService} from "./components/navigation/leftSideBar.service";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -104,7 +106,8 @@ type StoreType = {
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
     ModalModule,
-    AlertModule
+    AlertModule,
+    MaterialModule.forRoot()
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
@@ -119,7 +122,8 @@ type StoreType = {
     ModalWarningService,
     CustomAlertService,
     BreadcrumbService,
-    Animations
+    Animations,
+    LeftSidebarService
   ]
 })
 export class AppModule {

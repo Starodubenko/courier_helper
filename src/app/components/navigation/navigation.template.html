@@ -1,6 +1,6 @@
 <div *ngIf="user" class="navigation navbar navbar-default">
   <a class="navbar-brand logo-icon">
-    <img src="../../../assets/icon/learn-icon.png" alt="">
+    <img src="../../../assets/icon/learn-icon.png" alt="" (click)="leftSidebarService.element.open()">
   </a>
   <div class="user-info">
     <div class="name">{{user && (user.firstName + " " + user.lastName)}}</div>

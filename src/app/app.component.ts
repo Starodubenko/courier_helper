@@ -1,8 +1,9 @@
 /*
  * Angular 2 decorators and services
  */
-import {Component, ViewEncapsulation, ViewContainerRef} from '@angular/core';
+import {Component, ViewEncapsulation, ViewContainerRef, ViewChild, ElementRef} from '@angular/core';
 import {AppState} from "./app.service";
+import {LeftSidebarService} from "./components/navigation/leftSideBar.service";
 
 /*
  * App Component
@@ -12,7 +13,7 @@ import {AppState} from "./app.service";
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
-    './app.style.css'
+    'app.style.scss'
   ],
   template: `
     <!--<curtain></curtain>-->
@@ -20,6 +21,17 @@ import {AppState} from "./app.service";
     <!--<custom-alert></custom-alert>-->
     
     <main class="main-container">
+      <md-sidenav-layout class="left-bar">
+         <md-sidenav #leftSidebar (open)="closeStartButton.focus()">
+          Nav1
+          <br>
+          Nav2
+          <br>
+          Nav3
+          <br>
+          <button md-button #closeStartButton (click)="leftSidebar.close()">Close</button>
+        </md-sidenav>
+      </md-sidenav-layout>
       <router-outlet></router-outlet>
     </main>
     <!--<modal-warning></modal-warning>-->
@@ -28,9 +40,15 @@ import {AppState} from "./app.service";
 export class App {
 
   private viewContainerRef: ViewContainerRef;
+  @ViewChild('leftSidebar') leftSideBarElement: ElementRef;
 
-  public constructor(viewContainerRef: ViewContainerRef) {
+  public constructor(viewContainerRef: ViewContainerRef,
+                     private leftSidebarService: LeftSidebarService) {
     this.viewContainerRef = viewContainerRef;
+  }
+
+  ngAfterViewInit() {
+    this.leftSidebarService.element = this.leftSideBarElement; //component is set here doe to in constructor component isn't loaded.
   }
 
   ngOnInit() {

@@ -1,0 +1,20 @@
+html, body{
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif
+}
+
+span.active {
+  background-color: gray;
+}
+
+.main-container{
+
+}
+
+.left-bar{
+  position: absolute;
+  margin-top: 60px;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+}
