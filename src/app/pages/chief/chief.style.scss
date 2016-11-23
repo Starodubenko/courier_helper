@@ -1,7 +1,8 @@
-.add-course {
-  width: 900px;
-  margin: auto;
-
+.chief-page{
+  padding-top: 60px;
 }
-
+:host {
+  position: fixed;
+  z-index: 1;
+}
 

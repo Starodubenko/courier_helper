@@ -37,8 +37,13 @@ export const ROUTES: Routes = [
     component: ChiefPage,
     canActivate: [LoggedInGuard],
     // children: [
-    //   {path: ':id', component: OrderStatisticsViewPage, canActivate: [LoggedInGuard]},
+    //   {path: ':id', component: OrderStatisticsVie canActivate: [LoggedInGuard]},
     // ]
   },
   {path: '', redirectTo: 'login', pathMatch: 'full'},
 ];
+
+// {
+//   path: 'detail', loadChildren: () => System.import('./+detail').then((comp: any) => comp.default),
+// },
+// { path: '**',    component: NoContentComponent },

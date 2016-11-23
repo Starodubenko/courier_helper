@@ -2,7 +2,7 @@ import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule, PreloadAllModules } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
 /*
@@ -11,58 +11,52 @@ import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularcla
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
 // App is our top level component
-import { App } from './app.component';
+import {App} from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
-import { AppState, InteralStateType } from './app.service';
+import { AppState} from './app.service';
 import {CustomDateComponent} from "./components/customDate/customDate.component";
 import {ModalWarningComponent} from "./components/modalWarning/modalWarning.component";
+import {CustomAlertComponent} from "./components/alert/alert.component";
 import {SelectAuthorsComponent} from "./components/selectAuthors/selectAuthors.component";
 import {NavigationComponent} from "./components/navigation/navigation.component";
-import {AddCoursePage} from "./pages/addCourse/addCourse.component";
-import {CourseListPage} from "./pages/courses/courseList.component";
-import {EditCoursePage} from "./pages/editCourse/editCourse.component";
-import {Home} from "./pages/home/home.component";
-import {CourseComponent} from "./pages/courses/course/course.component";
-import {SearchRowComponent} from "./pages/courses/searchRow/searchRow.component";
+import {CurtainComponent} from "./pages/curtain/curtain.component";
 import {LoginComponent} from "./pages/curtain/login/login.component";
-import {DurationPipe} from "./pipes/duration.pipe";
-import {LoggedInGuard} from "./guards/loggedIn.guard";
-import {AbstractService} from "./services/";
-import {AuthService} from "./pages/curtain/login/auth.service";
-import {CourseService} from "./pages/courses/course/course.service";
-import {UserService} from "./services/user.service";
-import {AuthorsPipe} from "./pipes/authors.pipe";
-import {ModalWarningService} from "./components/modalWarning/modalWarning.service";
-import {ModalModule, AlertModule} from "ng2-bootstrap";
 import {BreadcrumbsComponent} from "./components/breadscrumbs/breadcrumbs.component";
-import {BreadcrumbService} from "./components/breadscrumbs/breadcrumbs.service";
-import {ViewCoursePage} from "./pages/viewCourse";
 import {CourseListContainer} from "./pages/courses/courseListContainer.component";
 import {ViewCourseContainer} from "./pages/viewCourse/viewCourseContainer.component";
-import {CustomAlertComponent} from "./components/alert";
-import {CustomAlertService} from "./components/alert/alert.service";
-import {OrdersListPage} from "./pages/orders/orderList.component";
+import {AddCoursePage} from "./pages/addCourse/addCourse.component";
+import {ViewCoursePage} from "./pages/viewCourse/viewCourse.component";
+import {CourseListPage} from "./pages/courses/courseList.component";
+import {CourseComponent} from "./pages/courses/course/course.component";
 import {NewOrderPage} from "./pages/orders/new/newOrder.component";
+import {SearchRowComponent} from "./pages/courses/searchRow/searchRow.component";
+import {EditCoursePage} from "./pages/editCourse/editCourse.component";
+import {Home} from "./pages/home/home.component";
+import {OrdersListPage} from "./pages/orders/orderList.component";
 import {OrderViewPage} from "./pages/orders/view/viewOrder.component";
 import {StatisticsListPage} from "./pages/ststistics/statisticsList.component";
 import {StatisticsViewPage} from "./pages/ststistics/view/statisticsView.component";
 import {ChiefPage} from "./pages/chief/chief.component";
-import {CurtainComponent} from "./pages/curtain/curtain.component";
+import {DurationPipe} from "./pipes/duration.pipe";
+import {AuthorsPipe} from "./pipes/authors.pipe";
+import {LoggedInGuard} from "./guards/loggedIn.guard";
+import {AbstractService} from "./services/abstract.sevice";
+import {AuthService} from "./pages/curtain/login/auth.service";
+import {CourseService} from "./pages/courses/course/course.service";
+import {UserService} from "./services/user.service";
+import {ModalWarningService} from "./components/modalWarning/modalWarning.service";
+import {CustomAlertService} from "./components/alert/alert.service";
+import {BreadcrumbService} from "./components/breadscrumbs/breadcrumbs.service";
+import {LeftSidebarService} from "./components/navigation/leftSideBar.service";
 import {Animations} from "./app.animations";
 import {MaterialModule} from "@angular/material";
-import {LeftSidebarService} from "./components/navigation/leftSideBar.service";
+import {ModalModule, AlertModule} from "ng2-bootstrap";
 
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
   AppState
 ];
-
-type StoreType = {
-  state: InteralStateType,
-  restoreInputValues: () => void,
-  disposeOldHosts: () => void
-};
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
@@ -102,9 +96,9 @@ type StoreType = {
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true }),
+    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    ReactiveFormsModule,
     ModalModule,
     AlertModule,
     MaterialModule.forRoot()
