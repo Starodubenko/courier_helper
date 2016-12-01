@@ -1,8 +1,9 @@
 /*
  * Angular 2 decorators and services
  */
-import {Component, ViewEncapsulation, ViewContainerRef, ViewChild, ElementRef} from '@angular/core';
-import {AppState} from "./app.service";
+import {Component, ViewEncapsulation, ViewChild, ViewContainerRef, ElementRef} from '@angular/core';
+
+import { AppState } from './app.service';
 import {LeftSidebarService} from "./components/navigation/leftSideBar.service";
 
 /*
@@ -24,25 +25,29 @@ import {LeftSidebarService} from "./components/navigation/leftSideBar.service";
       <md-sidenav-layout class="left-bar">
       <!--(open)="closeStartButton.focus()"-->
          <md-sidenav #leftSidebar>
+         <button md-button #closeStartButton (click)="leftSidebar.close()">Close</button>
           <a href="" class="nav-button">Home</a>
           <a href="" class="nav-button">Orders</a>
           <a href="" class="nav-button">Statistics</a>
           <a href="" class="nav-button">Log out</a>
-          <!--<button md-button #closeStartButton (click)="leftSidebar.close()">Close</button>-->
         </md-sidenav>
       </md-sidenav-layout>
       <router-outlet></router-outlet>
     </main>
     <!--<modal-warning></modal-warning>-->
-  `,
+  `
 })
-export class App {
+export class AppComponent {
+  angularclassLogo = 'assets/img/angularclass-avatar.png';
+  name = 'Angular 2 Webpack Starter';
+  url = 'https://twitter.com/AngularClass';
 
   private viewContainerRef: ViewContainerRef;
   @ViewChild('leftSidebar') leftSideBarElement: ElementRef;
 
-  public constructor(viewContainerRef: ViewContainerRef,
-                     private leftSidebarService: LeftSidebarService) {
+  constructor(public appState: AppState,
+              viewContainerRef: ViewContainerRef,
+              private leftSidebarService: LeftSidebarService) {
     this.viewContainerRef = viewContainerRef;
   }
 
@@ -51,6 +56,7 @@ export class App {
   }
 
   ngOnInit() {
+    console.log('Initial App State', this.appState.state);
   }
 
 }

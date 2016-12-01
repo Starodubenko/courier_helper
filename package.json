@@ -1,14 +1,14 @@
 {
-  "name": "courier_helper",
-  "version": "1.0.0",
-  "description": "Courier helper is made to make easier the work with list of order and reporing of it",
+  "name": "angular2-webpack-starter",
+  "version": "5.1.1",
+  "description": "An Angular 2 Webpack Starter kit featuring Angular 2 (Router, Http, Forms, Services, Tests, E2E, Coverage), Karma, Protractor, Jasmine, Istanbul, TypeScript, and Webpack by AngularClass",
   "keywords": [
     "angular2",
     "webpack",
     "typescript"
   ],
-  "author": "Rodion_Starodubenko@epam.com",
-  "homepage": "",
+  "author": "Patrick Stapleton <patrick@angularclass.com>",
+  "homepage": "https://github.com/angularclass/angular2-webpack-starter",
   "license": "MIT",
   "scripts": {
     "build:dev": "webpack --config config/webpack.dev.js --progress --profile",
@@ -24,8 +24,8 @@
     "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' ./src/",
     "e2e:live": "npm run e2e -- --elementExplorer",
     "e2e": "npm run protractor",
-    "github-deploy:dev": "webpack --config config/webpack.github-deploy.js --progress --profile --github-dev",
-    "github-deploy:prod": "webpack --config config/webpack.github-deploy.js --progress --profile --github-prod",
+    "github-deploy:dev": "webpack --config config/webpack.github-deploy.js --progress --profile --env.githubDev",
+    "github-deploy:prod": "webpack --config config/webpack.github-deploy.js --progress --profile --env.githubProd",
     "github-deploy": "npm run github-deploy:dev",
     "lint": "npm run tslint \"src/**/*.ts\"",
     "postversion": "git push && git push --tags",
@@ -40,6 +40,7 @@
     "server:dev:hmr": "npm run server:dev -- --inline --hot",
     "server:dev": "webpack-dev-server --config config/webpack.dev.js --progress --profile --watch --content-base src/",
     "server:prod": "http-server dist --cors",
+    "server:prod:ci": "http-server dist -p 3000 --cors",
     "server": "npm run server:dev",
     "start:hmr": "npm run server:dev:hmr",
     "start": "npm run server:dev",
@@ -77,29 +78,15 @@
     "ie-shim": "^0.1.0",
     "rxjs": "5.0.0-beta.12",
     "zone.js": "~0.6.26",
-
-    "@angular/material": "^2.0.0-alpha.10",
-    "@angular/upgrade": "~2.2.0",
-    "@angularclass/request-idle-callback": "^1.0.7",
-    "@angularclass/webpack-toolkit": "^1.3.3",
-    "angular-in-memory-web-api": "~0.1.15",
-    "angular2-in-memory-web-api": "0.0.20",
-    "angular2-template-loader": "^0.4.0",
-    "bootstrap": "^3.3.6",
-    "class-transformer": "^0.1.1",
-    "jwt-decode": "^2.1.0",
     "ng2-bootstrap": "^1.1.5",
-    "reflect-metadata": "^0.1.8",
-    "rxjs-es": "^5.0.0-beta.11",
-    "systemjs": "0.19.39",
-    "typescript-collections": "^1.1.2"
+    "@angular/material": "^2.0.0-alpha.10",
+    "jwt-decode": "^2.1.0"
   },
   "devDependencies": {
     "@types/hammerjs": "^2.0.33",
     "@types/jasmine": "^2.2.34",
     "@types/node": "^6.0.38",
-    "@types/protractor": "^1.5.20",
-    "@types/selenium-webdriver": "2.44.29",
+    "@types/selenium-webdriver": "2.53.33",
     "@types/source-map": "^0.1.27",
     "@types/uglify-js": "^2.0.27",
     "@types/webpack": "^1.12.34",
@@ -126,7 +113,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "1.8.0",
     "parse5": "^2.2.2",
-    "protractor": "^4.0.9",
+    "protractor": "^4.0.10",
     "raw-loader": "0.5.1",
     "rimraf": "~2.5.4",
     "script-ext-html-webpack-plugin": "^1.3.2",
@@ -136,8 +123,8 @@
     "to-string-loader": "^1.1.4",
     "ts-helpers": "1.1.2",
     "ts-node": "^1.7.0",
-    "tslint": "~4.0.0",
-    "tslint-loader": "^2.1.3",
+    "tslint": "~3.15.1",
+    "tslint-loader": "^2.1.5",
     "typedoc": "^0.5.0",
     "typescript": "^2.0.6",
     "url-loader": "^0.5.7",
@@ -146,24 +133,19 @@
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "2.1.0-beta.11",
     "webpack-md5-hash": "^0.0.5",
-    "webpack-merge": "~0.17.0",
-
-    "remap-istanbul": "^0.6.3",
-    "angular2-hmr": "~0.8.0",
-    "autoprefixer-loader": "^3.2.0",
-    "es6-promise-loader": "^1.0.1",
+    "webpack-merge": "~1.0.1",
     "sass-loader": "^4.0.0",
     "node-sass": "^3.10.1"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/angularclass/angular2-webpack-starter.git"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/angularclass/angular2-webpack-starter/issues"
   },
   "engines": {
-    "node": ">= 6.7.0",
-    "npm": ">= 3.10.3"
+    "node": ">= 4.2.1",
+    "npm": ">= 3"
   }
 }

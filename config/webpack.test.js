@@ -59,6 +59,9 @@ module.exports = function (options) {
      * Options affecting the normal modules.
      *
      * See: http://webpack.github.io/docs/configuration.html#module
+     *
+     * 'use:' revered back to 'loader:' as a temp. workaround for #1188
+     * See: https://github.com/AngularClass/angular2-webpack-starter/issues/1188#issuecomment-262872034
      */
     module: {
 
@@ -73,7 +76,7 @@ module.exports = function (options) {
         {
           enforce: 'pre',
           test: /\.js$/,
-          use: 'source-map-loader',
+          loader: 'source-map-loader',
           exclude: [
             // these packages have problems with their sourcemaps
             helpers.root('node_modules/rxjs'),
@@ -88,7 +91,7 @@ module.exports = function (options) {
          */
         {
           test: /\.ts$/,
-          use: 'awesome-typescript-loader',
+          loader: 'awesome-typescript-loader',
           query: {
             // use inline sourcemaps for "karma-remap-coverage" reporter
             sourceMap: false,
@@ -111,7 +114,7 @@ module.exports = function (options) {
          */
         {
           test: /\.json$/,
-          use: 'json-loader',
+          loader: 'json-loader',
           exclude: [helpers.root('src/index.html')]
         },
 
@@ -123,11 +126,12 @@ module.exports = function (options) {
          */
         {
           test: /\.css$/,
-          use: ['to-string-loader', 'css-loader'],
+          loader: ['to-string-loader', 'css-loader'],
           exclude: [helpers.root('src/index.html')]
         },
-        { test: /\.scss$/,
-          use: ['to-string-loader', 'css-loader', 'sass-loader'],
+        {
+          test: /\.scss$/,
+          loader: ['to-string-loader', 'css-loader', 'sass-loader'],
           exclude: [helpers.root('src/index.html')]
         },
 
@@ -139,7 +143,7 @@ module.exports = function (options) {
          */
         {
           test: /\.html$/,
-          use: 'raw-loader',
+          loader: 'raw-loader',
           exclude: [helpers.root('src/index.html')]
         },
 
@@ -152,7 +156,7 @@ module.exports = function (options) {
         {
           enforce: 'post',
           test: /\.(js|ts)$/,
-          use: 'istanbul-instrumenter-loader',
+          loader: 'istanbul-instrumenter-loader',
           include: helpers.root('src'),
           exclude: [
             /\.(e2e|spec)\.ts$/,
@@ -227,7 +231,7 @@ module.exports = function (options) {
      * See: https://webpack.github.io/docs/configuration.html#node
      */
     node: {
-      global: 'window',
+      global: true,
       process: false,
       crypto: 'empty',
       module: false,

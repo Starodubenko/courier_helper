@@ -1,7 +1,5 @@
-import {Routes} from '@angular/router';
-
+import { Routes, RouterModule } from '@angular/router';
 import {LoggedInGuard} from "./guards/loggedIn.guard";
-import {LoginComponent} from "./pages/curtain/login/login.component";
 import {Home} from "./pages/home/home.component";
 import {OrdersListPage} from "./pages/orders/orderList.component";
 import {OrderViewPage} from "./pages/orders/view/viewOrder.component";
@@ -10,15 +8,18 @@ import {StatisticsListPage} from "./pages/ststistics/statisticsList.component";
 import {StatisticsViewPage} from "./pages/ststistics/view/statisticsView.component";
 import {ChiefPage} from "./pages/chief/chief.component";
 import {CurtainComponent} from "./pages/curtain/curtain.component";
+import {AnimationGuard} from "./guards/animation.guard";
+
+import { DataResolver } from './app.resolver';
 
 
 export const ROUTES: Routes = [
-  {path: 'login', component: CurtainComponent, canActivate: [LoggedInGuard]},
-  {path: 'home', component: Home, canActivate: [LoggedInGuard]},
+  {path: 'login', component: CurtainComponent, canActivate: [LoggedInGuard, AnimationGuard]},
+  {path: 'home', component: Home, canActivate: [LoggedInGuard, AnimationGuard]},
   {
     path: 'my-orders',
     component: OrdersListPage,
-    canActivate: [LoggedInGuard],
+    canActivate: [LoggedInGuard, AnimationGuard],
     children: [
       {path: ':id', component: OrderViewPage, canActivate: [LoggedInGuard]},
       {path: 'new', component: NewOrderPage, canActivate: [LoggedInGuard]},
@@ -42,8 +43,3 @@ export const ROUTES: Routes = [
   },
   {path: '', redirectTo: 'login', pathMatch: 'full'},
 ];
-
-// {
-//   path: 'detail', loadChildren: () => System.import('./+detail').then((comp: any) => comp.default),
-// },
-// { path: '**',    component: NoContentComponent },

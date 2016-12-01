@@ -1,29 +1,36 @@
 import { Component } from '@angular/core';
-import {Animations} from "../../app.animations";
 import {AppState} from "../../app.service";
 import {BreadcrumbService} from "../../components/breadscrumbs/breadcrumbs.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {NavigationService} from "../../components/navigation/navigation.service";
 
 @Component({
   selector: 'home',
   styleUrls: [ 'home.style.scss' ],
-  templateUrl: './home.template.html',
-  host: { '[@routeAnimation]': 'this.appState.state'},
-  animations: Animations.page
+  templateUrl: './home.template.html'
 })
 export class Home {
 
-  public state:string = 'home';
+  public state: number;
 
-  constructor(private appState: AppState,
-              private route: ActivatedRoute,
-              private breadcrumbLabels: BreadcrumbService){
-    this.appState.state = this.state;
+  constructor(private route: ActivatedRoute,
+              private breadcrumbLabels: BreadcrumbService,
+              private navigationService: NavigationService,
+              private router: Router){
     this.breadcrumbLabels.addLabel(route.snapshot, "home");
+    this.state = navigationService.getState("home");
   }
 
   ngOnInit() {
 
+  }
+
+  ngAfterViewInit(){
+    this.state = null;
+  }
+
+  ngOnDestroy(){
+    this.state = this.navigationService.getState("home");
   }
 
 }

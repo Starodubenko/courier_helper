@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {AuthService} from "../../pages/curtain/login/auth.service";
 import {User} from "../../model/user.model";
 import {LeftSidebarService} from "./leftSideBar.service";
+import {NavigationService} from "./navigation.service";
 
 @Component({
   selector: 'navigation',
@@ -16,7 +17,8 @@ export class NavigationComponent {
 
   constructor(private authService: AuthService,
               public leftSidebarService: LeftSidebarService,
-              private router: Router) {
+              private router: Router,
+              private navigationService: NavigationService) {
     this.user = this.authService.getUser();
     this.authService.getObservableUser().subscribe((res:User) => {
       this.user = res;
@@ -25,6 +27,16 @@ export class NavigationComponent {
 
   ngOnInit(){
 
+  }
+
+  setStateToHome(){
+    this.navigationService.calculateStates("home");
+    console.log(this.navigationService.navigationModel);
+  }
+
+  setStateToNewOrder(){
+    this.navigationService.calculateStates("newOrder");
+    console.log(this.navigationService.navigationModel);
   }
 
   logOut(){

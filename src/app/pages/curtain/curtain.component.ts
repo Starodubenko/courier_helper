@@ -1,21 +1,32 @@
-import {Component} from '@angular/core';
-import {Animations} from "../../app.animations";
+import {Component, state} from '@angular/core';
 import {AppState} from "../../app.service";
-import {AbstractPageComponent} from "../abstract.page.compponent";
+import {NavigationService} from "../../components/navigation/navigation.service";
+import {Router} from "@angular/router";
 
 
 @Component({
   selector: 'curtain',
   templateUrl: './curtain.template.html',
-  styleUrls: ['./curtain.style.scss'],
-  host: { '[@routeAnimation]': 'this.appState.state'},
-  animations: Animations.page
+  styleUrls: ['./curtain.style.scss']
 })
 export class CurtainComponent{
 
-  public state:string = 'login';
+  public state: number;
 
-  constructor(private appState: AppState){
-    this.appState.state = this.state;
+  constructor(private navigationService: NavigationService,
+              private router: Router){
+    this.state = navigationService.getState("login");
+  }
+
+  ngOnInit() {
+
+  }
+
+  ngAfterViewInit(){
+    this.state = null;
+  }
+
+  ngOnDestroy(){
+    this.state = this.navigationService.getState("login");
   }
 }

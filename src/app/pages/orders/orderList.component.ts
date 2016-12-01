@@ -3,6 +3,8 @@ import {CourseService} from "../courses/course/course.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {BreadcrumbService} from "../../components/breadscrumbs/breadcrumbs.service";
+import {AppState} from "../../app.service";
+import {NavigationService} from "../../components/navigation/navigation.service";
 
 @Component({
   selector: 'order-list',
@@ -11,15 +13,27 @@ import {BreadcrumbService} from "../../components/breadscrumbs/breadcrumbs.servi
 })
 export class OrdersListPage {
 
+  public state: number;
   constructor(private courseService: CourseService,
               private userService: UserService,
               private router: Router,
+              private appState: AppState,
               private route: ActivatedRoute,
-              private breadcrumbLabels: BreadcrumbService){
-    this.breadcrumbLabels.addLabel(route.snapshot, "new");
+              private breadcrumbLabels: BreadcrumbService,
+              private navigationService: NavigationService){
+    this.breadcrumbLabels.addLabel(route.snapshot, "orders");
+    this.state = navigationService.getState("orders");
   }
 
   ngOnInit(){
 
+  }
+
+  ngAfterViewInit(){
+    this.state = null;
+  }
+
+  ngOnDestroy(){
+    this.state = this.navigationService.getState("orders");
   }
 }

@@ -11,9 +11,9 @@ import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularcla
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
 // App is our top level component
-import {App} from './app.component';
+import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
-import { AppState} from './app.service';
+import { AppState, InternalStateType } from './app.service';
 import {CustomDateComponent} from "./components/customDate/customDate.component";
 import {ModalWarningComponent} from "./components/modalWarning/modalWarning.component";
 import {CustomAlertComponent} from "./components/alert/alert.component";
@@ -48,9 +48,10 @@ import {ModalWarningService} from "./components/modalWarning/modalWarning.servic
 import {CustomAlertService} from "./components/alert/alert.service";
 import {BreadcrumbService} from "./components/breadscrumbs/breadcrumbs.service";
 import {LeftSidebarService} from "./components/navigation/leftSideBar.service";
-import {Animations} from "./app.animations";
 import {MaterialModule} from "@angular/material";
 import {ModalModule, AlertModule} from "ng2-bootstrap";
+import {NavigationService} from "./components/navigation/navigation.service";
+import {AnimationGuard} from "./guards/animation.guard";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -58,20 +59,26 @@ const APP_PROVIDERS = [
   AppState
 ];
 
+type StoreType = {
+  state: InternalStateType,
+  restoreInputValues: () => void,
+  disposeOldHosts: () => void
+};
+
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
-  bootstrap: [ App ],
+  bootstrap: [ AppComponent ],
   declarations: [
-    App,
+    AppComponent,
     CustomDateComponent,
     ModalWarningComponent,
     CustomAlertComponent,
     SelectAuthorsComponent,
     NavigationComponent,
     CurtainComponent,
-      LoginComponent,
+    LoginComponent,
     BreadcrumbsComponent,
     CourseListContainer,
     ViewCourseContainer,
@@ -79,19 +86,19 @@ const APP_PROVIDERS = [
     AddCoursePage,
     ViewCoursePage,
     CourseListPage,
-      CourseComponent,
-      SearchRowComponent,
+    CourseComponent,
+    SearchRowComponent,
     EditCoursePage,
     Home,
     OrdersListPage,
-      NewOrderPage,
-      OrderViewPage,
+    NewOrderPage,
+    OrderViewPage,
     StatisticsListPage,
-      StatisticsViewPage,
+    StatisticsViewPage,
     ChiefPage,
 
     DurationPipe,
-    AuthorsPipe,
+    AuthorsPipe
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -108,6 +115,7 @@ const APP_PROVIDERS = [
     APP_PROVIDERS,
 
     LoggedInGuard,
+    AnimationGuard,
 
     AbstractService,
     AuthService,
@@ -116,13 +124,47 @@ const APP_PROVIDERS = [
     ModalWarningService,
     CustomAlertService,
     BreadcrumbService,
-    Animations,
-    LeftSidebarService
+    LeftSidebarService,
+    NavigationService
   ]
 })
 export class AppModule {
   constructor(public appRef: ApplicationRef, public appState: AppState) {}
 
+  hmrOnInit(store: StoreType) {
+    if (!store || !store.state) return;
+    console.log('HMR store', JSON.stringify(store, null, 2));
+    // set state
+    this.appState._state = store.state;
+    // set input values
+    if ('restoreInputValues' in store) {
+      let restoreInputValues = store.restoreInputValues;
+      setTimeout(restoreInputValues);
+    }
+
+    this.appRef.tick();
+    delete store.state;
+    delete store.restoreInputValues;
+  }
+
+  hmrOnDestroy(store: StoreType) {
+    const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
+    // save state
+    const state = this.appState._state;
+    store.state = state;
+    // recreate root elements
+    store.disposeOldHosts = createNewHosts(cmpLocation);
+    // save input values
+    store.restoreInputValues  = createInputTransfer();
+    // remove styles
+    removeNgStyles();
+  }
+
+  hmrAfterDestroy(store: StoreType) {
+    // display new elements
+    store.disposeOldHosts();
+    delete store.disposeOldHosts;
+  }
 
 }
 
