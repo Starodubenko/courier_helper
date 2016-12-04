@@ -47,11 +47,12 @@ import {UserService} from "./services/user.service";
 import {ModalWarningService} from "./components/modalWarning/modalWarning.service";
 import {CustomAlertService} from "./components/alert/alert.service";
 import {BreadcrumbService} from "./components/breadscrumbs/breadcrumbs.service";
-import {LeftSidebarService} from "./components/navigation/leftSideBar.service";
+import {LeftSidebarService} from "./components/leftSlideNav/leftSideBar.service";
 import {MaterialModule} from "@angular/material";
-import {ModalModule, AlertModule} from "ng2-bootstrap";
+// import {ModalModule, AlertModule} from "ng2-bootstrap";
 import {NavigationService} from "./components/navigation/navigation.service";
 import {AnimationGuard} from "./guards/animation.guard";
+import {LeftSlideNavComponent} from "./components/leftSlideNav/leftSlideNav.component";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -77,6 +78,7 @@ type StoreType = {
     CustomAlertComponent,
     SelectAuthorsComponent,
     NavigationComponent,
+    LeftSlideNavComponent,
     CurtainComponent,
     LoginComponent,
     BreadcrumbsComponent,
@@ -106,8 +108,6 @@ type StoreType = {
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
     ReactiveFormsModule,
-    ModalModule,
-    AlertModule,
     MaterialModule.forRoot()
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection

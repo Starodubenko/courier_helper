@@ -134,6 +134,10 @@ module.exports = function (options) {
           loader: ['to-string-loader', 'css-loader', 'sass-loader'],
           exclude: [helpers.root('src/index.html')]
         },
+        {
+          test: /\.woff|\.woff2|\.svg|.eot|\.ttf|\.otf/,
+          loader: 'file-loader'
+        },
 
         /**
          * Raw loader support for *.html

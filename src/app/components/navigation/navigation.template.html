@@ -1,13 +1,7 @@
-<div *ngIf="user" class="navigation navbar navbar-default">
+<div *ngIf="authService.isLoggedIn()" class="navigation navbar navbar-default">
   <a class="navbar-brand logo-icon">
-    <img src="../../../assets/icon/learn-icon.png" alt="" (click)="leftSidebarService.element.toggle()">
+    <img src="../../../assets/icon/learn-icon.png" alt="" (click)="leftSidebarService.toggle()">
   </a>
-  <div class="user-info">
-    <div class="name">{{user && (user.firstName + " " + user.lastName)}}</div>
-    <div class="action">
-      <a href="" *ngIf="user" (click)="logOut()">Log out</a>
-    </div>
-  </div>
   <div class="breadcrumb-container">
     <breadcrumbs></breadcrumbs>
   </div>

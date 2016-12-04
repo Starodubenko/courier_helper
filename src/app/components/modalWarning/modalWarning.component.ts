@@ -2,7 +2,7 @@ import {Component, Input, OnInit, ElementRef} from '@angular/core';
 import {ModalWarningService} from "./modalWarning.service";
 import {ViewChild} from "@angular/core/src/metadata/di";
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
-import {ModalDirective} from "ng2-bootstrap";
+// import {ModalDirective} from "ng2-bootstrap";
 
 @Component({
   selector: 'modal-warning',
@@ -13,8 +13,8 @@ import {ModalDirective} from "ng2-bootstrap";
 })
 export class ModalWarningComponent implements OnInit{
 
-  @ViewChild('modalWarning')
-  private modalWarning: ModalDirective;
+  // @ViewChild('modalWarning')
+  // private modalWarning: ModalDirective;
   private title = "";
   private content = "";
   private mainAction = function (callback) {
@@ -40,7 +40,7 @@ export class ModalWarningComponent implements OnInit{
       self.noAction = function(){
         self.mainAction(warningData.noAction);
       };
-      self.modalWarning.show();
+      // self.modalWarning.show();
     })
   }
 }

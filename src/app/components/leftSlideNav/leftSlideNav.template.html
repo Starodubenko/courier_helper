@@ -1,0 +1,24 @@
+<md-sidenav-layout>
+  <md-sidenav #leftSidebar opened="true">
+    <div class="header-slide-menu-row">
+      <span class="menu-label">Menu</span>
+      <span class="close" (click)="leftSidebar.close()">Close</span>
+    </div>
+    <div class="user-row">
+      <span class="name">{{user && (user.firstName + " " + user.lastName)}}</span>
+      <span class="logout" (click)="logOut()">Log out</span>
+    </div>
+    <a routerLink="/home" (click)="leftSidebar.toggle()" class="nav-button">Home</a>
+    <a routerLink="/my-orders" (click)="leftSidebar.toggle()" class="nav-button">Orders</a>
+    <a routerLink="/statistics-list" (click)="leftSidebar.toggle()" class="nav-button">Statistics</a>
+    <a routerLink="/chief" (click)="leftSidebar.toggle()" class="nav-button">Chief</a>
+  </md-sidenav>
+
+  <navigation></navigation>
+  <!--<custom-alert></custom-alert>-->
+
+  <main class="main-container">
+    <router-outlet></router-outlet>
+  </main>
+  <!--<modal-warning></modal-warning>-->
+</md-sidenav-layout>

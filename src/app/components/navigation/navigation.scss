@@ -33,24 +33,4 @@
   .label-name {
     height: 60px;
   }
-
-  .user-info {
-    width: 120px;
-    float: right;
-
-    .name {
-      height: 35px;
-      display: table-cell;
-      vertical-align: middle;
-      padding: 0 5px;
-    }
-
-    .action {
-      padding: 0 5px;
-
-      a {
-        float: right;
-      }
-    }
-  }
 }

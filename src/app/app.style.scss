@@ -1,3 +1,8 @@
+@font-face {
+  font-family: gilroyLight;
+  src: url(../assets/fonts/Gilroy-Light.otf);
+}
+
 html, body{
   height: 100%;
   font-family: Arial, Helvetica, sans-serif;
@@ -10,14 +15,6 @@ span.active {
 
 .main-container{
 
-}
-
-.left-bar{
-  position: absolute;
-  //margin-top: 60px;
-  z-index: 2;
-  width: 100%;
-  height: 100vh;
 }
 
 .nav-button{

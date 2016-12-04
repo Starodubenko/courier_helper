@@ -16,7 +16,7 @@ export class StatisticsListPage {
               private router: Router,
               private route: ActivatedRoute,
               private breadcrumbLabels: BreadcrumbService){
-    this.breadcrumbLabels.addLabel(route.snapshot, "new");
+    this.breadcrumbLabels.addLabel(route.snapshot, "statistics");
   }
 
   ngOnInit(){
