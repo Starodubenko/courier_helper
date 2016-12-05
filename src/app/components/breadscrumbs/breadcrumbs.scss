@@ -1,7 +1,53 @@
+
 .breadcrumb {
+  display: table;
   margin: 0;
-  height: 60px;
-  padding: 15px;
+  padding: 0;
   font-size: 20px;
   background-color: transparent;
+  > span {
+    &.active{
+      background-color: transparent;
+    }
+    > a, span{
+      height: 60px;
+      display: table-cell;
+      vertical-align: middle;
+      padding-left: 40px;
+      padding-right: 60px;
+      background-color: #999c65;
+      border-top-right-radius: 35px;
+      border-bottom-right-radius: 35px;
+      font-size: 35px;
+      border-right: solid 1px white;
+      position: relative;
+      z-index: 1;
+      text-decoration: none;
+    }
+  }
+  > span:first-child {
+    > a, span {
+      padding-left: 75px;
+      left: 0;
+      z-index: 2;
+    }
+  }
+  > span:last-child {
+    > a, span {
+      background-color: aqua;
+      position: relative;
+      z-index: 0;
+      border-right: none;
+    }
+  }
+  > span:nth-child(2) {
+    > a, span {
+      left: -30px;
+    }
+  }
+  > span:nth-child(3) {
+    > a, span {
+      left: -60px;
+    }
+  }
 }

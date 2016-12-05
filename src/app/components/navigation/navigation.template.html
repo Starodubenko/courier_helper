@@ -1,7 +1,5 @@
 <div *ngIf="authService.isLoggedIn()" class="navigation navbar navbar-default">
-  <a class="navbar-brand logo-icon">
-    <img src="../../../assets/icon/learn-icon.png" alt="" (click)="leftSidebarService.toggle()">
-  </a>
+  <i class="fa fa-arrow-circle-right navbar-brand logo-icon" aria-hidden="true" (click)="leftSidebarService.toggle()"></i>
   <div class="breadcrumb-container">
     <breadcrumbs></breadcrumbs>
   </div>

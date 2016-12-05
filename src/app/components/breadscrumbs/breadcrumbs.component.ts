@@ -6,15 +6,15 @@ import {BreadcrumbService} from './breadcrumbs.service';
 @Component({
   selector: 'breadcrumbs',
   template: `
-    <ul class="breadcrumb">
-      <li>
+    <div class="breadcrumb">
+      <span>
         <a [routerLink]="['/']">CH</a>
-      </li>
-      <li *ngFor="let segment of segments; let last = last; let index = index;" [ngClass]="{'active': last}">
+      </span>
+      <span *ngFor="let segment of segments; let last = last; let index = index;" [ngClass]="{'active': last}">
         <a *ngIf="!last" [routerLink]="getNavigationURL(segment)">{{ getRouteName(segment) }}</a>
         <span *ngIf="last">{{ getRouteName(segment, index) }}</span>
-      </li>
-    </ul>`,
+      </span>
+    </div>`,
   styleUrls: [
     './breadcrumbs.scss'
   ],
