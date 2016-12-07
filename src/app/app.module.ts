@@ -53,6 +53,7 @@ import {MaterialModule} from "@angular/material";
 import {NavigationService} from "./components/navigation/navigation.service";
 import {AnimationGuard} from "./guards/animation.guard";
 import {LeftSlideNavComponent} from "./components/leftSlideNav/leftSlideNav.component";
+import {DragDropModule} from "primeng/components/dragdrop/dragdrop";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -108,7 +109,8 @@ type StoreType = {
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
     ReactiveFormsModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    DragDropModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

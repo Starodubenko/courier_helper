@@ -14,7 +14,9 @@ import { AppState } from './app.service';
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
     'app.style.scss',
-    '../../node_modules/font-awesome/scss/font-awesome.scss'
+    '../../node_modules/font-awesome/scss/font-awesome.scss',
+    '../../node_modules/primeng/resources/themes/omega/theme.css',
+    '../../node_modules/primeng/resources/primeng.min.css',
   ],
   template: `
     <left-slide-nav></left-slide-nav>   
