@@ -4,7 +4,6 @@
 import {Component, ViewEncapsulation, ViewChild, ViewContainerRef, ElementRef} from '@angular/core';
 
 import { AppState } from './app.service';
-import {LeftSidebarService} from "./components/leftSlideNav/leftSideBar.service";
 
 /*
  * App Component
@@ -14,7 +13,8 @@ import {LeftSidebarService} from "./components/leftSlideNav/leftSideBar.service"
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
-    'app.style.scss'
+    'app.style.scss',
+    '../../node_modules/font-awesome/scss/font-awesome.scss'
   ],
   template: `
     <left-slide-nav></left-slide-nav>   

@@ -9,29 +9,18 @@ md-sidenav-layout, .my-content {
   margin: 0;
   width: 100%;
   height: 100%;
-
-  //> .md-sidenav-backdrop {
-  //  &.md-sidenav-shown {
-  //    background-color: rgba(0, 0, 0, 0.6);
-  //  }
-  //}
 }
 
-//md-sidenav-layout {
-//  > .md-sidenav-backdrop .md-sidenav-shown {
-//    background-color: rgba(0, 0, 0, 0.6);
-//  }
-//}
-
 md-sidenav {
-  background-color: white;
+  background-color: #1e0000;
 
   .header-slide-menu-row {
     height: 60px;
-    background-color: #d6d6d6;
     display: inline-flex;
     align-items: center;
     width: 250px;
+    background: #ad0000 -webkit-linear-gradient(top, #4f4f4f 0%, #adadad 40%, #afafaf 60%, #4f4f4f 100%);
+    font-size: 18px;
 
     .menu-label {
       height: 60px;
@@ -39,6 +28,7 @@ md-sidenav {
       flex-grow: 1;
       align-items: center;
       justify-content: center;
+      color: #ad0000;
     }
     .close {
       height: 60px;
@@ -47,6 +37,21 @@ md-sidenav {
       align-items: center;
       justify-content: center;
       cursor: pointer;
+
+      border-top-left-radius: 35px;
+      border-bottom-left-radius: 35px;
+      background: #ad0000 -webkit-linear-gradient(top, #4f4f4f 0%, #adadad 40%, #adadad 60%, #4f4f4f 100%);
+      color: #ff1919;
+      text-shadow: 0px 0px 0px #000000;
+      border-left: 2px solid #563333;
+    }
+    .close:active{
+      background: #ad0000 -webkit-linear-gradient(top, #4f4f4f 0%, #adadad 50%, #adadad 50%, #4f4f4f 100%);
+      color: #30c1fb;
+      font-size: 2.5em;
+    }
+    .close:hover{
+      color: #30c1fb;
     }
   }
 
@@ -72,12 +77,29 @@ md-sidenav {
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      font-size: 2em;
     }
   }
-  a {
-    background-color: #76ff8d;
-    display: block;
+  .nav-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 50px;
     width: 250px;
+    color: #ad0000;
+    text-shadow: 0px 0px 4px #FFFFFF;
+    font-size: 30px;
+    text-decoration: none;
+    background: #ad0000 -webkit-linear-gradient(top, #4f4f4f 0%, #adadad 40%, #afafaf 60%, #4f4f4f 100%);
   }
+  .nav-button.active{
+    color: #30c1fb;
+    text-shadow: 0px 0px 4px #1a0086;
+    background: #4f4f4f;
+  }
+  .nav-button:hover{
+    color: #30c1fb;
+    text-shadow: 0px 0px 4px #000000;
+  }
+
 }
