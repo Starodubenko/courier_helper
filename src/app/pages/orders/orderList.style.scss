@@ -1,12 +1,50 @@
-.order-list-page{
+.order-list-page {
   margin-top: 60px;
   background-color: #66afe9;
   width: 100vw;
   height: 100vh;
+  overflow-y: auto;
 }
+
 :host {
   position: fixed;
   z-index: 1;
+}
+
+.order-row {
+  display: flex;
+  height: 50px;
+  margin: 20px 0 0px;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: inset 0 0 21px #ffffff;
+  background-color: #44090f;
+  color: #d2d2d2;
+  .order-cell {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+  }
+  .order-hints {
+    width: 100%;
+    position: absolute;
+    display: inline-flex;
+    justify-content: space-between;
+    span {
+      height: 30px;
+      padding: 0 12px;
+      background-color: #aeaeae;
+      box-shadow: inset 0 0 8px #000000;
+      color: #650202;
+      border-radius: 15px;
+      position: relative;
+      top: -20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }
 
 
