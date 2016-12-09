@@ -55,6 +55,7 @@ import {AnimationGuard} from "./guards/animation.guard";
 import {LeftSlideNavComponent} from "./components/leftSlideNav/leftSlideNav.component";
 import {DragDropModule} from "primeng/components/dragdrop/dragdrop";
 import {DragulaModule} from "ng2-dragula/ng2-dragula";
+import {TabService} from "./pages/ststistics/tab.service";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -128,7 +129,8 @@ type StoreType = {
     CustomAlertService,
     BreadcrumbService,
     LeftSidebarService,
-    NavigationService
+    NavigationService,
+    TabService
   ]
 })
 export class AppModule {

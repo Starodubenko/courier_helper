@@ -3,6 +3,7 @@ import {CourseService} from "../courses/course/course.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {BreadcrumbService} from "../../components/breadscrumbs/breadcrumbs.service";
+import {TabService} from "./tab.service";
 
 @Component({
   selector: 'statistics-list',
@@ -15,7 +16,8 @@ export class StatisticsListPage {
               private userService: UserService,
               private router: Router,
               private route: ActivatedRoute,
-              private breadcrumbLabels: BreadcrumbService){
+              private breadcrumbLabels: BreadcrumbService,
+              public statisticsTabsService: TabService){
     this.breadcrumbLabels.addLabel(route.snapshot, "statistics");
   }
 

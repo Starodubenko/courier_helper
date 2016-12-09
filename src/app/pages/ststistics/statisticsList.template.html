@@ -1,3 +1,11 @@
 <div class="statistics-view">
-  Statistics view
+  <md-tab-group>
+    <md-tab *ngFor="let tab of statisticsTabsService.tabs">
+      <template md-tab-label>
+        {{tab.header}}
+      </template>
+
+    </md-tab>
+  </md-tab-group>
+  <i class="fa fa-th fa-x3 hidden-tabs" aria-hidden="true"></i>
 </div>
