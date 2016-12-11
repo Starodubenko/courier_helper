@@ -4,10 +4,10 @@
 
   .hidden-tabs {
     font-size: 3em;
-    position: relative;
-    top: -48px;
+    position: absolute;
     right: 5px;
     float: right;
+    z-index: 1;
   }
 
   .hidden-tabs:hover {

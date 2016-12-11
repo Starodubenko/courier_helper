@@ -5,7 +5,7 @@ export class CustomerOrder{
   private _customer: Customer;
 
 
-  constructor(number: number, customer: Customer) {
+  constructor(number: number = null, customer: Customer = null) {
     this._number = number;
     this._customer = customer;
   }

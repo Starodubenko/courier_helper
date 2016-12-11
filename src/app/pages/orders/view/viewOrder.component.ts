@@ -13,7 +13,7 @@ export class OrderViewPage {
               private route: ActivatedRoute,
               private breadcrumbLabels: BreadcrumbService
   ){
-    this.breadcrumbLabels.addLabel(route.snapshot, "new order");
+    this.breadcrumbLabels.addLabel(route.snapshot, "#23251");
   }
 
   ngOnInit(){

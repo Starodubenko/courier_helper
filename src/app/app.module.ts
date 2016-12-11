@@ -56,6 +56,8 @@ import {LeftSlideNavComponent} from "./components/leftSlideNav/leftSlideNav.comp
 import {DragDropModule} from "primeng/components/dragdrop/dragdrop";
 import {DragulaModule} from "ng2-dragula/ng2-dragula";
 import {TabService} from "./pages/ststistics/tab.service";
+import {Ng2DropdownModule} from "ng2-material-dropdown/dist/src";
+import {ChartsModule} from "ng2-charts";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -112,7 +114,8 @@ type StoreType = {
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
     ReactiveFormsModule,
     MaterialModule.forRoot(),
-    DragulaModule
+    DragulaModule,
+    ChartsModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

@@ -19,7 +19,18 @@ export class OrdersListPage {
   private ORDERS_BAG_NAME = "orders-bag";
 
   private ordersList: CustomerOrder[] = [];
+  private ordersSerachFields = {};
   private ordersBag;
+  private searchString;
+
+  private ordersFields = [
+    {name: "name", isFindable: false,},
+    {name: "surname", isFindable: false,},
+    {name: "address", isFindable: false,},
+    {name: "", isFindable: false,},
+    {name: "", isFindable: false,},
+    {name: "", isFindable: false,},
+    ];
 
   public state: number;
   constructor(private courseService: CourseService,
@@ -46,6 +57,8 @@ export class OrdersListPage {
     this.ordersList.push(new CustomerOrder(1,firstCustomer));
     this.ordersList.push(new CustomerOrder(2,secondCustomer));
     this.ordersList.push(new CustomerOrder(3,thirdCustomer));
+
+    // this.ordersSerachFields = this.getSearchFieldsFromClass(new CustomerOrder());
   }
 
   private onDropModel(args) {
@@ -61,18 +74,30 @@ export class OrdersListPage {
     return this.ordersList.toString();
   }
 
-  destroyBag(name){
-    debugger;
-    if (this.dragulaService.find(name)){
-      this.dragulaService.setOptions(name, {moves: function (el, source, handle, sibling) {
-        return false;
-      }});
+  setSearchedList(searchedOrdersList) {
+    this.ordersList = searchedOrdersList;
+  }
+
+  toggleDragAndDrop(name){
+    if (this.dragulaService.find(name).drake.containers.length > 0){
+      this.dragulaService.find(name).drake.containers = [];
     } else {
-      this.dragulaService.setOptions(name, {moves: function (el, source, handle, sibling) {
-        return true;
-      }});
+      this.dragulaService.find(name).drake.containers = this.ordersBag;
     }
   }
+
+  isDraggable(name){
+    return this.dragulaService.find(name).drake.containers.length > 0
+  }
+
+  // private getSearchFieldsFromClass(object){
+  //   debugger;
+  //   let qweqe = eval("new CustomerOrder();");
+  //   for (let prop in object){
+  //     debugger;
+  //   }
+  // }
+
 
   ngOnInit(){
 
@@ -80,7 +105,8 @@ export class OrdersListPage {
 
   ngAfterViewInit(){
     this.state = null;
-    this.ordersBag = this.dragulaService.find(this.ORDERS_BAG_NAME);
+    this.ordersBag = this.dragulaService.find(this.ORDERS_BAG_NAME).drake.containers;
+    this.dragulaService.find(this.ORDERS_BAG_NAME).drake.containers = [];
   }
 
   ngOnDestroy(){

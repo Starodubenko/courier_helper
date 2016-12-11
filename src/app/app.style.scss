@@ -1,4 +1,4 @@
-@import '~dragula/dist/dragula.min.css';
+@import '~C:/Users/Rody-PC/WebstormProjects/angular2-webpack-starter/node_modules/dragula/dist/dragula.min.css';
 @import '~@angular/material/core/theming/all-theme';
 // Plus imports for other components in your app.
 
@@ -23,6 +23,7 @@ html, body{
   height: 100%;
   font-family: gilroyLight;
   margin: 0;
+  min-width: 620px;
 }
 
 span.active {

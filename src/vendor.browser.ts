@@ -21,6 +21,8 @@ import '@angularclass/hmr';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
+import 'chart.js/src/chart.js'
+
 if ('production' === ENV) {
   // Production
 

@@ -1,11 +1,16 @@
 <div class="order-list-page">
   <div>
-    <button (click)="destroyBag(ORDERS_BAG_NAME)">Destroy orders-bag</button>
+    <div class="order-top-panel">
+      <search-row (find)="setSearchedList($event)"></search-row>
+      <md-slide-toggle (change)="toggleDragAndDrop(ORDERS_BAG_NAME)" color="custom-red-color">
+        Draggable
+      </md-slide-toggle>
+    </div>
     <div class='wrapper'>
       <div class='container' [dragula]='ORDERS_BAG_NAME' [dragulaModel]='ordersList'>
-        <div class="order-row" *ngFor="let order of ordersList, let i = index">
+        <div class="order-row" [ngClass]="{'drag-activated': isDraggable(ORDERS_BAG_NAME)}" *ngFor="let order of ordersList, let i = index">
           <div class="order-hints">
-            <span>{{i+1}}</span>
+            <span  class="row-number">{{i+1}}</span>
             <span>#{{order.number}}</span>
           </div>
           <div class="order-cell">{{order.customer.fullname}}</div>

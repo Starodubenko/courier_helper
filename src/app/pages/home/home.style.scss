@@ -1,10 +1,72 @@
-.home{
+.home {
   margin-top: 60px;
-  background-color: #a94442;
   width: 100vw;
-  height: 100vh;
-  bottom: 0px;
+  height: 94vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .metric-widget {
+    width: 300px;
+    height: 300px;
+    border-radius: 205px;
+    background-color: #30c1fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+
+    .content {
+      width: 280px;
+      height: 280px;
+      border-radius: 205px;
+      background-color: #4f4f4f;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%, #4f4f4f 100%);
+
+      .title {
+        font-size: 25px;
+        margin-bottom: 15px;
+        color: #ad0000;
+        text-shadow: 0px 0px 4px #FFFFFF;
+      }
+
+      .digital-wrapper{
+        display: inline-flex;
+
+        div{
+          margin: 3px;
+        }
+
+        .current {
+
+        }
+
+        .divider{
+          border: 1px solid black;
+        }
+
+        .goal {
+          font-size: 30px;
+        }
+      }
+    }
+  }
+
+  .metric-widget:hover{
+    .content{
+      .title {
+        color: #30c1fb;
+      }
+    }
+  }
 }
+
 :host {
   position: fixed;
   z-index: 1;

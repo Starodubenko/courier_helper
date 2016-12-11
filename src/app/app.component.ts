@@ -4,7 +4,6 @@
 import {Component, ViewEncapsulation, ViewChild, ViewContainerRef, ElementRef} from '@angular/core';
 
 import { AppState } from './app.service';
-
 /*
  * App Component
  * Top Level Component

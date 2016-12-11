@@ -5,7 +5,7 @@ export class Customer{
   private _address: string;
 
 
-  constructor(name: string, surname: string, address: string) {
+  constructor(name: string = "", surname: string = "", address: string = "") {
     this._name = name;
     this._surname = surname;
     this._address = address;

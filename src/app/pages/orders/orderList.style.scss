@@ -1,9 +1,18 @@
 .order-list-page {
   margin-top: 60px;
-  background-color: #66afe9;
   width: 100vw;
   height: 100vh;
   overflow-y: auto;
+
+  md-slide-toggle.md-checked:not(.md-disabled) .md-slide-toggle-thumb {
+    background-color: #ffc107;
+  }
+
+  .order-top-panel {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
 }
 
 :host {
@@ -20,6 +29,9 @@
   box-shadow: inset 0 0 21px #ffffff;
   background-color: #44090f;
   color: #d2d2d2;
+  &.gu-transit {
+    cursor: -webkit-grabbing;
+  }
   .order-cell {
     display: flex;
     flex-grow: 1;
@@ -27,7 +39,6 @@
     justify-content: center;
   }
   .order-hints {
-    width: 100%;
     position: absolute;
     display: inline-flex;
     justify-content: space-between;
@@ -44,7 +55,17 @@
       justify-content: center;
       align-items: center;
     }
+    .row-number{
+      top: 8px;
+      left: -20px;
+    }
   }
 }
+
+.order-row.drag-activated:hover {
+  cursor: -webkit-grab;
+}
+
+
 
 
