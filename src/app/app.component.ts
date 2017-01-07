@@ -16,6 +16,9 @@ import { AppState } from './app.service';
     '../../node_modules/font-awesome/scss/font-awesome.scss',
     '../../node_modules/primeng/resources/themes/omega/theme.css',
     '../../node_modules/primeng/resources/primeng.min.css',
+    // '../../node_modules/@swimlane/ngx-datatable/assets/app.css',
+    // '../../node_modules/@swimlane/ngx-datatable/release/datatable.css',
+    // '../../node_modules/@swimlane/ngx-datatable/release/material.css',
   ],
   template: `
     <left-slide-nav></left-slide-nav>   

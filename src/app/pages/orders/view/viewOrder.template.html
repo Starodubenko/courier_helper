@@ -1,49 +1,43 @@
 <div class="view-order-page">
   <div class="container">
-    <div class="customer-info-block">
-      <div class="info">
-        <label>Name: </label> <span>Ivan</span>
+    <div class="info-wrapper">
+      <div class="customer-info-block">
+        <label>Customer</label>
+        <div class="info">
+          <label>Name: </label> <span>{{customerOrder.customer.name}}</span>
+        </div>
+        <div class="info">
+          <label>Middle name: </label> <span>{{customerOrder.customer.middlename}}</span>
+        </div>
+        <div class="info">
+          <label>Surname: </label> <span>{{customerOrder.customer.surname}}</span>
+        </div>
+        <div class="info">
+          <label>Address: </label> <span>{{customerOrder.customer.address}}</span>
+        </div>
       </div>
-      <div class="info">
-        <label>Second name: </label> <span>Ivanovich</span>
-      </div>
-      <div class="info">
-        <label>Surname: </label> <span>Ivanov</span>
-      </div>
-      <div class="info">
-        <label>Address: </label> <span>Babushkina 5</span>
-      </div>
-    </div>
-    <div class="order-info">
-      <table class="table table-hover">
-        <thead>
+      <div class="order-info">
+        <label>Order content</label>
+        <table class="table table-hover">
+          <thead>
           <tr>
+            <th>#</th>
             <th>Goods name</th>
             <th>Goods price</th>
             <th>Goods count</th>
+            <th>Total price</th>
           </tr>
-        </thead>
-        <tr>
-          <td>Some goods</td>
-          <td>1000</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>Some goods 2</td>
-          <td>2000</td>
-          <td>1</td>
-        </tr>
-        <tr>
-          <td>Some goods 3</td>
-          <td>3000</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td>Some goods 4</td>
-          <td>500</td>
-          <td>10</td>
-        </tr>
-      </table>
+          </thead>
+          <tr *ngFor="let good of customerOrder.getGoodsKeys(), let i = index">
+            <td>{{i+1}}</td>
+            <td>{{good.name}}</td>
+            <td>{{good.price}}</td>
+            <td>{{customerOrder.goods.get(good)}}</td>
+            <td>{{good.price * customerOrder.goods.get(good)}}</td>
+          </tr>
+        </table>
+        <div class="summary"><label>Total cost: </label>{{customerOrder.getTotalSum()}}</div>
+      </div>
     </div>
   </div>
 </div>

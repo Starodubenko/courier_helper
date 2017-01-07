@@ -1,3 +1,80 @@
 <div class="new-order-page">
-  New order page
+  <div class="container">
+    <div class="customer-info-block">
+      <div class="info">
+        <md-input placeholder="name" [(ngModel)]="customerOrder.customer.name"></md-input>
+      </div>
+      <div class="info">
+        <md-input placeholder="middle name" [(ngModel)]="customerOrder.customer.middlename"></md-input>
+      </div>
+      <div class="info">
+        <md-input placeholder="surname" [(ngModel)]="customerOrder.customer.surname"></md-input>
+      </div>
+      <div class="info">
+        <md-input placeholder="address" [(ngModel)]="customerOrder.customer.address"></md-input>
+      </div>
+    </div>
+
+
+    <div class="order-info">
+      <div class="orders-table">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Goods name</th>
+            <th>Goods price</th>
+            <th>Goods count</th>
+            <th>Total price</th>
+          </tr>
+          </thead>
+          <tr class="add-row">
+            <td></td>
+            <td>
+              <md-input ng2-auto-complete
+                        [(ngModel)]="newGoods"
+                        [source]="goodsReference"
+                        [list-formatter]="autocompleListFormatter"
+                        placeholder="Start type a goods name"
+                        value-property-name="id"
+                        display-property-name="name"
+              ></md-input>
+            </td>
+            <td>{{newGoods ? newGoods.price: "0"}}</td>
+            <td>
+              <md-input placeholder="count" [(ngModel)]="newGoodsCount"></md-input>
+            </td>
+            <td>{{newGoods ? newGoods.price * newGoodsCount : "0"}}</td>
+            <td><i class="fa fa-plus-circle fa-2x" aria-hidden="true" (click)="addGoodsToOrder()"></i></td>
+          </tr>
+          <tr *ngFor="let good of customerOrder.getGoodsKeys(), let i = index">
+            <td>{{i+1}}</td>
+            <td>{{good.name}}</td>
+            <td>{{good.price}}</td>
+            <td>{{customerOrder.goods.get(good)}}</td>
+            <td>{{good.price * customerOrder.goods.get(good)}}</td>
+            <td><i class="fa fa-minus-circle fa-2x" aria-hidden="true" (click)="removeGoods(good)"></i></td>
+          </tr>
+          <tr class="gap">
+            <td></td><td></td>
+            <td></td><td></td>
+            <td></td><td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="total-cost">Total cost:</td>
+            <td>{{customerOrder.getTotalSum()}}</td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+
+      <!--<div class="summary"><label>Total cost: </label> {{customerOrder.getTotalSum()}}</div>-->
+      <div class="actions">
+        <button class="save-order" (click)="saveOrder()">Save order</button>
+      </div>
+    </div>
+  </div>
 </div>

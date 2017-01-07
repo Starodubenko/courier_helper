@@ -1,16 +1,17 @@
 
 export class Customer{
-  private _name: string;
-  private _surname: string;
-  private _address: string;
+  private _name: string = "";
+  private _middlename: string = "";
+  private _surname: string = "";
+  private _address: string = "";
 
 
-  constructor(name: string = "", surname: string = "", address: string = "") {
+  constructor(name?: string, middlename?: string, surname?: string, address?: string) {
     this._name = name;
+    this._middlename = middlename;
     this._surname = surname;
     this._address = address;
   }
-
 
   get name(): string {
     return this._name;
@@ -38,6 +39,14 @@ export class Customer{
 
   set address(value: string) {
     this._address = value;
+  }
+
+  get middlename(): string {
+    return this._middlename;
+  }
+
+  set middlename(value: string) {
+    this._middlename = value;
   }
 
   toString(){

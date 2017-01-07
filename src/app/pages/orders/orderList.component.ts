@@ -8,6 +8,7 @@ import {NavigationService} from "../../components/navigation/navigation.service"
 import {CustomerOrder} from "./order.model";
 import {Customer} from "./customer.model";
 import {DragulaService} from "ng2-dragula/components/dragula.provider";
+import {OrderService} from "./order.service";
 
 @Component({
   selector: 'order-list',
@@ -40,8 +41,8 @@ export class OrdersListPage {
               private route: ActivatedRoute,
               private breadcrumbLabels: BreadcrumbService,
               private navigationService: NavigationService,
-              private dragulaService: DragulaService){
-    this.breadcrumbLabels.addLabel(route.snapshot, "orders");
+              private dragulaService: DragulaService,
+              private orderService: OrderService){
     this.state = navigationService.getState("orders");
 
     dragulaService.dropModel.subscribe((value) => {
@@ -50,13 +51,9 @@ export class OrdersListPage {
     dragulaService.removeModel.subscribe((value) => {
       this.onRemoveModel(value.slice(1));
     });
-
-    let firstCustomer = new Customer("Vasily", "Pupkin", "Gulder 1");
-    let secondCustomer = new Customer("Petr", "Kuznecov", "Gulder 2");
-    let thirdCustomer = new Customer("Alexey", "Djidov", "Gulder 3");
-    this.ordersList.push(new CustomerOrder(1,firstCustomer));
-    this.ordersList.push(new CustomerOrder(2,secondCustomer));
-    this.ordersList.push(new CustomerOrder(3,thirdCustomer));
+    orderService.getList().subscribe((list) => {
+      this.ordersList = list;
+    });
 
     // this.ordersSerachFields = this.getSearchFieldsFromClass(new CustomerOrder());
   }
@@ -98,9 +95,16 @@ export class OrdersListPage {
   //   }
   // }
 
+  openOrderDitails(orderId: number){
+    this.router.navigate(['my-orders', orderId]);
+  }
+
+  openNewOrder(){
+    this.router.navigate(['new'], { relativeTo: this.route });
+  }
 
   ngOnInit(){
-
+    this.breadcrumbLabels.addLabel(this.route.snapshot, "orders");
   }
 
   ngAfterViewInit(){

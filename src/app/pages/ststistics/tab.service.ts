@@ -29,11 +29,12 @@ export class TabService {
 
   }
 
+
   get tabs(): CustomStatisticsTab[] {
     return this._tabs;
   }
 
-  set tabs(value: Array) {
+  set tabs(value: CustomStatisticsTab[]) {
     this._tabs = value;
   }
 }

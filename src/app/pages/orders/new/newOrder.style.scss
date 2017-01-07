@@ -1,8 +1,125 @@
-.new-order-page{
-  margin-top: 60px;
-}
-:host {
+:host /deep/ {
   position: fixed;
   z-index: 1;
+  color: #d2d2d2;
+
+  .md-input-placeholder{
+    color: #d2d2d2;
+    &.md-float.md-focused{
+      color: white;
+    }
+  }
+  .md-input-underline{
+    border-color: #d2d2d2;
+    transform: translate(4px,-7px);
+    .md-input-ripple{
+      background-color: #650202;
+    }
+  }
+
+  .ng2-auto-complete{
+
+    ul{
+      background-color: white;
+      color: #650202;
+    }
+
+    .keyword{
+      font-size: 30px;
+      color: transparent;
+      background-color: transparent;
+    }
+  }
+
+  .new-order-page{
+    position: fixed;
+    top: 60px;
+    bottom: 0px;
+    width: 100vw;
+    background-color: #4f4f4f;
+    display: flex;
+    flex-direction: column;
+
+    .container /deep/ {
+
+      width: 95%;
+      flex-basis: 100%;
+      background-color: #28718e;
+      box-shadow: inset 10px 20px 40px #525252;
+      display: flex;
+      flex-direction: row;
+      font-size: 30px;
+
+      .customer-info-block{
+        margin: 25px 25px;
+        background-color: #44090f;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: inset 0 0 21px #ffffff;
+        flex-grow: 1;
+        padding: 20px;
+        min-height: 330px;
+
+        .info{
+          min-width: 100%;
+          padding: 4px 10px;
+
+          md-input{
+            width: 100%;
+          }
+        }
+      }
+
+      .order-info{
+        margin: 25px 25px;
+        background-color: rgb(99, 99, 99);
+        display: flex;
+        flex-direction: column;
+        box-shadow: inset 0 0 21px #ffffff;
+        flex-grow: 1;
+        padding: 20px;
+        min-height: 330px;
+
+        .orders-table{
+          min-height: 165px;
+          overflow: auto;
+          flex-grow: 1;
+
+          tr{
+
+            td{
+              padding: 0 15px;
+              text-align: center;
+            }
+          }
+
+          .total-cost{
+            float: right;
+          }
+
+          .gap{
+            height: 30px;
+
+            td{
+              border-bottom: 1px solid #44090f;
+            }
+          }
+        }
+
+        .summary{
+          align-self: flex-end;
+          margin-right: 145px;
+          flex-grow: 1;
+        }
+
+        .actions{
+          display: flex;
+          justify-content: flex-end;
+          height: 50px;
+        }
+      }
+    }
+  }
 }
 

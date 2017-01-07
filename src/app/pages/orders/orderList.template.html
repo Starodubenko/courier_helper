@@ -1,20 +1,23 @@
 <div class="order-list-page">
   <div>
-    <div class="order-top-panel">
-      <search-row (find)="setSearchedList($event)"></search-row>
-      <md-slide-toggle (change)="toggleDragAndDrop(ORDERS_BAG_NAME)" color="custom-red-color">
-        Draggable
-      </md-slide-toggle>
-    </div>
     <div class='wrapper'>
       <div class='container' [dragula]='ORDERS_BAG_NAME' [dragulaModel]='ordersList'>
-        <div class="order-row" [ngClass]="{'drag-activated': isDraggable(ORDERS_BAG_NAME)}" *ngFor="let order of ordersList, let i = index">
+        <div class="order-top-panel">
+          <search-row (find)="setSearchedList($event)"></search-row>
+          <md-slide-toggle (change)="toggleDragAndDrop(ORDERS_BAG_NAME)" color="custom-red-color">
+            Draggable
+          </md-slide-toggle>
+        </div>
+        <div class="order-row" [ngClass]="{'drag-activated': isDraggable(ORDERS_BAG_NAME)}" *ngFor="let order of ordersList, let i = index" (click)="openOrderDitails(order.number)">
           <div class="order-hints">
-            <span  class="row-number">{{i+1}}</span>
+            <span class="row-number">{{i+1}}</span>
             <span>#{{order.number}}</span>
           </div>
           <div class="order-cell">{{order.customer.fullname}}</div>
           <div class="order-cell">{{order.customer.address}}</div>
+        </div>
+        <div class="order-row new-order" (click)="openNewOrder()">
+          <i class="fa fa-plus-circle fa-3x" aria-hidden="true"></i>
         </div>
       </div>
     </div>

@@ -58,6 +58,11 @@ import {DragulaModule} from "ng2-dragula/ng2-dragula";
 import {TabService} from "./pages/ststistics/tab.service";
 import {Ng2DropdownModule} from "ng2-material-dropdown/dist/src";
 import {ChartsModule} from "ng2-charts";
+import {OrderService} from "./pages/orders/order.service";
+import {Typeahead} from "ng2-typeahead/src/ng2-typeahead.ts";
+import {GoodsService} from "./pages/orders/goods.service";
+import {Ng2AutoCompleteModule} from "ng2-auto-complete";
+import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -115,7 +120,9 @@ type StoreType = {
     ReactiveFormsModule,
     MaterialModule.forRoot(),
     DragulaModule,
-    ChartsModule
+    ChartsModule,
+    Ng2AutoCompleteModule,
+    NgxDatatableModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
@@ -128,6 +135,8 @@ type StoreType = {
     AuthService,
     CourseService,
     UserService,
+    OrderService,
+    GoodsService,
     ModalWarningService,
     CustomAlertService,
     BreadcrumbService,
@@ -138,41 +147,6 @@ type StoreType = {
 })
 export class AppModule {
   constructor(public appRef: ApplicationRef, public appState: AppState) {}
-
-  hmrOnInit(store: StoreType) {
-    if (!store || !store.state) return;
-    console.log('HMR store', JSON.stringify(store, null, 2));
-    // set state
-    this.appState._state = store.state;
-    // set input values
-    if ('restoreInputValues' in store) {
-      let restoreInputValues = store.restoreInputValues;
-      setTimeout(restoreInputValues);
-    }
-
-    this.appRef.tick();
-    delete store.state;
-    delete store.restoreInputValues;
-  }
-
-  hmrOnDestroy(store: StoreType) {
-    const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
-    // save state
-    const state = this.appState._state;
-    store.state = state;
-    // recreate root elements
-    store.disposeOldHosts = createNewHosts(cmpLocation);
-    // save input values
-    store.restoreInputValues  = createInputTransfer();
-    // remove styles
-    removeNgStyles();
-  }
-
-  hmrAfterDestroy(store: StoreType) {
-    // display new elements
-    store.disposeOldHosts();
-    delete store.disposeOldHosts;
-  }
 
 }
 

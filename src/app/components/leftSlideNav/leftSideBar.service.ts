@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 @Injectable()
 export class LeftSidebarService {
 
-  private _element: ElementRef;
+  private _element;
   private _isOpened: boolean = false;
 
   constructor(){

@@ -21,8 +21,8 @@ export const ROUTES: Routes = [
     component: OrdersListPage,
     canActivate: [LoggedInGuard, AnimationGuard],
     children: [
-      {path: ':id', component: OrderViewPage, canActivate: [LoggedInGuard]},
       {path: 'new', component: NewOrderPage, canActivate: [LoggedInGuard]},
+      {path: ':id', component: OrderViewPage, canActivate: [LoggedInGuard]},
     ]
   },
   {
