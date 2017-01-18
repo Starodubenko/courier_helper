@@ -4,12 +4,16 @@
        [class.has-error]="!loginForm.controls.username.valid &&
                           loginForm.controls.username.touched">
     <div class="col-xs-6">
-      <label class="control-label" for="username">User name</label>
-      <input type="text"
-             class="form-control"
-             id="username"
-             formControlName="username"
-             [(ngModel)]="username">
+      <label class="control-label" for="password">User name</label>
+      <!--<input type="text"-->
+             <!--class="form-control"-->
+             <!--id="username"-->
+             <!--formControlName="username"-->
+             <!--[(ngModel)]="username">-->
+      <md-input id="username"
+                placeholder="input your user name"
+                formControlName="username"
+                [(ngModel)]="username"></md-input>
     </div>
     <div class="col-xs-6 login-validation-error">
       <span class="validation-danger"
@@ -25,11 +29,16 @@
                           loginForm.controls.password.touched">
     <div class="col-xs-6">
       <label class="control-label" for="password">Password</label>
-      <input type="password"
-             class="form-control"
-             id="password"
-             formControlName="password"
-             [(ngModel)]="password">
+      <!--<input type="password"-->
+             <!--class="form-control"-->
+             <!--id="password"-->
+             <!--formControlName="password"-->
+             <!--[(ngModel)]="password">-->
+      <md-input id="password"
+                type="password"
+                placeholder="input your password"
+                formControlName="password"
+                [(ngModel)]="password"></md-input>
     </div>
     <div class="col-xs-6 login-validation-error">
       <span class="validation-danger"
@@ -43,10 +52,12 @@
         Password can contains only latin letters and numbers.</span>
     </div>
   </div>
-  <input type="submit"
-         class="btn btn-primary"
-         (click)="logIn()"
-         [disabled]="!loginForm.valid"
-         value="Log in">
+  <button md-raised-button
+          color="primary"
+          class="login-button"
+          type="submit"
+          (click)="logIn()"
+          [disabled]="!loginForm.valid">Log in</button>
   <!--<input id="remember-me" type="checkbox" [(ngModel)]="rememberMe"><label for="remember-me">Remember me</label>-->
+  <!--<button md-raised-button color="primary">PRIMARY</button>-->
 </form>

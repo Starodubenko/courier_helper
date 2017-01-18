@@ -13,7 +13,7 @@ export class AbstractService {
     this.http = _injector.get(Http);
     this.customAlertService = _injector.get(CustomAlertService);
     if ('production' === ENV) {
-      this.domain = 'http://angular2mentoring-89997.onmodulus.net';
+      this.domain = 'http://courierhelperback-95393.app.xervo.io';
     } else {
       this.domain = 'http://localhost:8080';
     }

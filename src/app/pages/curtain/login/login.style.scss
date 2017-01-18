@@ -21,10 +21,13 @@
   .login-validation-error {
     display: table;
     height: 36px;
-    margin-top: 23px;
     span {
       display: inline-block;
       vertical-align: middle;
     }
+  }
+
+  .login-button{
+    margin-left: 170px;
   }
 }

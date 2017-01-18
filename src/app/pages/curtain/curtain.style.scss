@@ -17,6 +17,14 @@
   }
 }
 
+@media (max-width: 740px) {
+  .curtain {
+    .portal-name {
+      font-size: 50px;
+    }
+  }
+}
+
 :host {
   position: absolute;
   z-index: 2;

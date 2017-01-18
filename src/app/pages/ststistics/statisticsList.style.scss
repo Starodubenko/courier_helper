@@ -1,24 +1,37 @@
-.statistics-view {
-  margin-top: 60px;
-  width: 100vw;
-
-  .hidden-tabs {
-    font-size: 3em;
-    position: absolute;
-    right: 5px;
-    float: right;
-    z-index: 1;
-  }
-
-  .hidden-tabs:hover {
-    color: #66afe9;
-    cursor: pointer;
-  }
-}
-
 :host {
   position: fixed;
   z-index: 1;
+
+  .statistics-view {
+    margin-top: 60px;
+    width: 100vw;
+
+    .chart-container{
+      width: 200px!important;
+      height: 200px!important;
+
+      .chart-curtain{
+
+      }
+      .little-panel {
+        //width: 200px!important;
+        //height: 200px!important;
+      }
+    }
+
+    .hidden-tabs {
+      font-size: 3em;
+      position: absolute;
+      right: 5px;
+      float: right;
+      z-index: 1;
+    }
+
+    .hidden-tabs:hover {
+      color: #66afe9;
+      cursor: pointer;
+    }
+  }
 }
 
 
